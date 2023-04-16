@@ -1,0 +1,792 @@
+Run started:2023-04-16 19:13:18.452352
+
+Test results:
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: '__FROM_THESEUS_LAYER_TOKEN__'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   Location: theseus\constants.py:14:31
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b105_hardcoded_password_string.html
+13	
+14	__FROM_THESEUS_LAYER_TOKEN__ = "__FROM_THESEUS_LAYER_TOKEN__"
+15	
+16	
+17	def _CHECK_DTYPE_SUPPORTED(dtype):
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\core\cost_function.py:268:12
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+267	        def jac_fn(*optim_vars_tensors_):
+268	            assert len(optim_vars_tensors_) == len(tmp_optim_vars)
+269	            for i, tensor in enumerate(optim_vars_tensors_):
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\core\cost_function.py:291:12
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+290	        def jac_fn(optim_vars_tensors_, aux_vars_tensors_):
+291	            assert len(optim_vars_tensors_) == len(tmp_optim_vars)
+292	
+293	            # disable tensor checks and other operations that are incompatible with functorch
+294	            with no_lie_group_check(silent=True):
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\core\cost_function.py:324:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+323	        # takes care of throwing an appropriate error message if this happens
+324	        assert len(batch_sizes) == 1 or (
+325	            len(batch_sizes) == 2 and min(batch_sizes) == 1
+326	        )
+327	        batch_size = max(batch_sizes)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\core\objective.py:173:16
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+172	                self._all_variables[variable.name] = variable
+173	                assert variable not in self_var_to_fn_map
+174	                self_var_to_fn_map[variable] = []
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\core\objective.py:696:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+695	        # Hacky way to make Vectorize a "friend" class
+696	        assert (
+697	            enabler.__module__ == "theseus.core.vectorizer"
+698	            and enabler.__class__.__name__ == "Vectorize"
+699	        )
+700	        self._vectorized_jacobians_iter = jacobians_iter
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\core\objective.py:718:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+717	    def vectorized(self):
+718	        assert (
+719	            (not self._vectorized)
+720	            == (self._vectorized_jacobians_iter is None)
+721	            == (self._vectorization_run is None)
+722	            == (self._vectorization_to is None)
+723	            == (self._get_error_iter == self._get_error_iter_base)
+724	            == (self._retract_method == Objective._retract_base)
+725	        )
+726	        return self._vectorized
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\core\variable.py:135:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+134	    def __init__(self, vars: List[Variable], mask: torch.Tensor) -> None:
+135	        assert mask.dtype == torch.bool and mask.ndim == 1
+136	        self._vars = vars
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\core\variable.py:142:12
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+141	        for v in self._vars:
+142	            assert v.shape[0] == self._mask.shape[0]
+143	            v.update(v.tensor[self._mask])
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\core\vectorizer.py:88:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+87	            return super().weighted_jacobians_error()
+88	        assert self._cached_error is not None
+89	        return self._cached_jacobians, self._cached_error
+
+--------------------------------------------------
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: '__shared__'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   Location: theseus\core\vectorizer.py:107:20
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b105_hardcoded_password_string.html
+106	class Vectorize:
+107	    _SHARED_TOKEN = "__shared__"
+108	
+109	    def __init__(self, objective: Objective, empty_cuda_cache: bool = False):
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\core\vectorizer.py:180:16
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+179	                        var_idx += 1
+180	                assert var_idx == len(schema) - 2
+181	
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\core\vectorizer.py:320:12
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+319	        for wrapper in cost_fn_wrappers:
+320	            assert wrapper._cached_error is None
+321	            assert wrapper._cached_jacobians is None
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\core\vectorizer.py:321:12
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+320	            assert wrapper._cached_error is None
+321	            assert wrapper._cached_jacobians is None
+322	            v_slice = slice(start_idx, start_idx + batch_size)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\core\vectorizer.py:358:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+357	        all_vectorized_vars = Vectorize._get_all_vars(vectorized_cost_fn)
+358	        assert len(all_vectorized_vars) == len(var_names)
+359	        names_to_tensors: Dict[str, List[torch.Tensor]] = defaultdict(list)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\core\vectorizer.py:427:16
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+426	            else:
+427	                assert batch_size == var.shape[0]
+428	
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\core\vectorizer.py:444:12
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+443	            vectorized_tensor = torch.cat([v.tensor for v in var_list], dim=0)
+444	            assert (
+445	                vectorized_tensor.shape
+446	                == (n_vars * batch_size,) + vectorized_tensor.shape[1:]
+447	            )
+448	            # delta_list is a list of N tensors of shape (b, d), where
+449	            # d is var.dof(). After vectorization, we get tensor of shape (N * b, d)
+450	            vectorized_delta = torch.cat(delta_list, dim=0)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\core\vectorizer.py:451:12
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+450	            vectorized_delta = torch.cat(delta_list, dim=0)
+451	            assert vectorized_delta.shape == (n_vars * batch_size, dof)
+452	
+453	            # Retract the vectorized tensor, then redistribute to the variables
+454	            vectorized_var.update(vectorized_tensor)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\embodied\kinematics\kinematics_model.py:32:12
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+31	        if isinstance(robot_pose, Point2) or isinstance(robot_pose, Vector):
+32	            assert robot_pose.dof() == 2
+33	            return {"state": robot_pose}
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\embodied\kinematics\kinematics_model.py:76:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+75	        robot_model_dofs = len(self.drm_model.get_joint_limits())
+76	        assert joint_states.shape[-1] == robot_model_dofs, (
+77	            f"Robot model dofs ({robot_model_dofs}) incompatible with "
+78	            f"input joint state dimensions ({joint_states.shape[-1]})."
+79	        )
+80	
+81	        # Parse input
+82	        if isinstance(joint_states, torch.Tensor):
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\geometry\so3.py:75:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+74	        )
+75	        assert quaternion.shape == (size[0], 4)
+76	        return SO3(quaternion=quaternion)
+
+--------------------------------------------------
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: '__FROM_THESEUS_LAYER_TOKEN__'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   Location: theseus\labs\lie\functional\constants.py:14:31
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b105_hardcoded_password_string.html
+13	
+14	__FROM_THESEUS_LAYER_TOKEN__ = "__FROM_THESEUS_LAYER_TOKEN__"
+15	
+16	
+17	def _CHECK_DTYPE_SUPPORTED(dtype):
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\labs\lie\functional\so3_impl.py:121:4
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+120	    )
+121	    assert quaternion.shape == (size[0], 4)
+122	    ret = _quaternion_to_rotation_autograd_fn(quaternion)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\labs\lie\lie_tensor.py:420:4
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+419	def _build_random_fn(op_name: str, ltype: _ltype) -> _RandFnType:
+420	    assert op_name in ["rand", "randn"]
+421	
+422	    def fn(
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\optimizer\autograd\baspacho_sparse_autograd.py:32:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+31	
+32	        assert isinstance(symbolic_decomposition, SymbolicDecomposition)
+33	
+34	        batch_size = A_val.shape[0]
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\optimizer\autograd\common.py:41:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+40	    if damping_alpha_beta is not None and (damping_alpha_beta[0] > 0.0).any():
+41	        assert (
+42	            not detach_hessian
+43	        )  # this should only be used with a GN-step with no damping
+44	        alpha = damping_alpha_beta[0].view(-1, 1)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\optimizer\autograd\lu_cuda_sparse_autograd.py:44:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+43	
+44	        assert isinstance(solver_context, CusolverLUSolver)
+45	
+46	        AtA_row_ptr = solver_context.A_rowPtr
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\optimizer\nonlinear\dcem.py:110:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+109	
+110	        assert fX.shape == (n_batch, self.n_samples)
+111	
+112	        if self.temp is not None and self.temp < np.infty:
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\optimizer\nonlinear\dcem.py:142:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+141	
+142	        assert indexes.shape[:2] == X.shape[:2]
+143	
+144	        X_I = indexes * X
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\optimizer\nonlinear\dcem.py:151:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+150	
+151	        assert self.sigma.shape == (n_batch, self._tot_dof)
+152	
+153	        return self._mu_vec_to_dict(mu)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\optimizer\nonlinear\levenberg_marquardt.py:184:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+183	        linearization = self.linear_solver.linearization
+184	        assert isinstance(self._damping, torch.Tensor)
+185	        damping = self._damping.view(-1, 1)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\optimizer\nonlinear\nonlinear_optimizer.py:144:12
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+143	            )
+144	            assert last_err.grad_fn is None
+145	            err_history[:, 0] = last_err.clone().cpu()
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\optimizer\nonlinear\nonlinear_optimizer.py:192:12
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+191	        if info.err_history is not None:
+192	            assert not torch.is_grad_enabled()
+193	            info.err_history[:, current_iter + 1] = err.clone().cpu()
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\optimizer\nonlinear\nonlinear_optimizer.py:199:12
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+198	            # Only copy best solution if needed (None means track_best_solution=False)
+199	            assert info.best_err is not None
+200	            good_indices = err < info.best_err
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\optimizer\nonlinear\nonlinear_optimizer.py:257:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+256	        M = info.status == NonlinearOptimizerStatus.MAX_ITERATIONS
+257	        assert np.all(
+258	            (grad_loop_info.status[M] == NonlinearOptimizerStatus.MAX_ITERATIONS)
+259	            | (grad_loop_info.status[M] == NonlinearOptimizerStatus.CONVERGED)
+260	        )
+261	        info.status[M] = grad_loop_info.status[M]
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\optimizer\sparse_linearization.py:188:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+187	    def diagonal_scaling(self, v: torch.Tensor) -> torch.Tensor:
+188	        assert v.ndim == 2
+189	        assert v.shape[1] == self.num_cols
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\optimizer\sparse_linearization.py:189:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+188	        assert v.ndim == 2
+189	        assert v.shape[1] == self.num_cols
+190	        if self._AtA_diag is None:
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\optimizer\variable_ordering.py:20:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+19	    def _compute_default_order(self, objective: Objective):
+20	        assert not self._var_order and not self._var_name_to_index
+21	        cur_idx = 0
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\theseus_layer.py:297:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+296	        super().__init__(cost_weight, name=name)
+297	        assert epsilon.ndim == 2 and epsilon.shape[1] == 1
+298	        self.var = var
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\third_party\easyaug.py:404:12
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+403	        for name in self.fn_names:
+404	            assert hasattr(self, name) and callable(getattr(self, name))
+405	
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\third_party\lml.py:76:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+75	            x = x.unsqueeze(0)
+76	        assert x.ndimension() == 2
+77	
+78	        n_batch, nx = x.shape
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\third_party\lml.py:160:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+159	
+160	        assert x.ndimension() == 2
+161	        assert y.ndimension() == 2
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\third_party\lml.py:161:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+160	        assert x.ndimension() == 2
+161	        assert y.ndimension() == 2
+162	        assert grad_output.ndimension() == 2
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\third_party\lml.py:162:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+161	        assert y.ndimension() == 2
+162	        assert grad_output.ndimension() == 2
+163	
+164	        n_batch, nx = x.shape
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\third_party\lml.py:205:4
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+204	    prob.solve(cp.SCS, verbose=True)
+205	    assert "optimal" in prob.status
+206	    y_cp = y.value
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\utils\examples\bundle_adjustment\data.py:31:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+30	        batch_size = self.pose.tensor.shape[0]
+31	        assert batch_size == 1
+32	        R = th.SO3(tensor=self.pose.tensor[:, :, :3]).log_map().squeeze(0)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\utils\examples\motion_planning\misc.py:78:20
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+77	                for f in [img_fname, sdf_fname, traj_fname]:
+78	                    assert os.path.isfile(f)
+79	                files[map_type].append(
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\utils\examples\motion_planning\misc.py:192:4
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+191	            traj_angles.append(torch.atan2(trajectory[:, 3], trajectory[:, 2]).numpy())
+192	    assert len(traj_angles) == 0 or len(traj_angles) == len(traj_rows)
+193	
+194	    # Generate a separate figure for each batch index
+195	    colors = ["green", "blue", "red"]
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\utils\examples\motion_planning\models.py:222:16
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+221	                var_type, time_idx = var.name.split("_")
+222	                assert var_type in ["pose", "vel"]
+223	                if var_type == "pose":
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\utils\examples\motion_planning\motion_planner.py:80:12
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+79	        ]:
+80	            assert v is not None
+81	
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\utils\examples\motion_planning\motion_planner.py:180:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+179	        )
+180	        assert pose_type in [th.Point2, th.SE2]
+181	        goal_cost_cls = th.Difference if pose_type == th.Point2 else _XYDifference
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\utils\examples\motion_planning\motion_planner.py:200:12
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+199	        if nonholonomic_w > 0.0:
+200	            assert pose_type == th.SE2
+201	            nhw = th.ScaleCostWeight(nonholonomic_w, name="nonholonomic_w")
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\utils\examples\motion_planning\motion_planner.py:204:12
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+203	        if positive_vel_w > 0.0:
+204	            assert pose_type == th.SE2
+205	            pvw = th.ScaleCostWeight(positive_vel_w, name="positive_vel_w")
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\utils\examples\motion_planning\motion_planner.py:304:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+303	        optimizer_cls = getattr(th, optimizer_config[0])
+304	        assert issubclass(optimizer_cls, th.NonlinearLeastSquares)
+305	        optimizer = optimizer_cls(self.objective, **optimizer_config[1])
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\utils\examples\motion_planning\motion_planner.py:389:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+388	        input_dict: Dict[str, torch.Tensor] = {}
+389	        assert start.shape[1] == pose_numel
+390	        for i in range(self.objective.trajectory_len):
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\utils\examples\motion_planning\motion_planner.py:406:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+405	        vel_numel = self.objective.optim_vars["vel_0"].numel()
+406	        assert trajectory.shape[1:] == (
+407	            pose_numel + vel_numel,
+408	            self.objective.trajectory_len,
+409	        )
+410	        input_dict: Dict[str, torch.Tensor] = {}
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\utils\examples\pose_graph\dataset.py:400:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+399	    def get_batch_dataset(self, batch_idx: int = 0) -> "PoseGraphDataset":
+400	        assert batch_idx < self.num_batches
+401	        start = batch_idx * self.batch_size
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\utils\examples\tactile_pose_estimation\misc.py:30:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+29	    ):
+30	        assert data_mode in ["all", "train", "val"]
+31	
+32	        batch_size = min(batch_size, max_episodes)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\utils\examples\tactile_pose_estimation\misc.py:63:16
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+62	            else:
+63	                assert self.dataset_size == getattr(self, key).shape[0]
+64	        print(f"Dataset for mode '{data_mode}' has size {self.dataset_size}.")
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\utils\examples\tactile_pose_estimation\misc.py:180:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+179	    def get_batch(self, batch_idx: int) -> Dict[str, torch.Tensor]:
+180	        assert batch_idx < self.num_batches
+181	        start = batch_idx * self.batch_size
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\utils\sparse_matrix_utils.py:22:4
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+21	) -> torch.Tensor:
+22	    assert batch_size == A_val.shape[0]
+23	    num_rows = len(A_row_ptr) - 1
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\utils\sparse_matrix_utils.py:66:4
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+65	) -> torch.Tensor:
+66	    assert batch_size == A_val.shape[0]
+67	    num_rows = len(A_row_ptr) - 1
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\utils\sparse_matrix_utils.py:114:4
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+113	) -> torch.Tensor:
+114	    assert A_row_ptr.ndim == 1
+115	    assert A_col_ind.ndim == 1
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\utils\sparse_matrix_utils.py:115:4
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+114	    assert A_row_ptr.ndim == 1
+115	    assert A_col_ind.ndim == 1
+116	    assert A_val.ndim == 2
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\utils\sparse_matrix_utils.py:116:4
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+115	    assert A_col_ind.ndim == 1
+116	    assert A_val.ndim == 2
+117	    assert v.ndim == 2
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\utils\sparse_matrix_utils.py:117:4
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+116	    assert A_val.ndim == 2
+117	    assert v.ndim == 2
+118	    ctx.save_for_backward(A_val, A_row_ptr, A_col_ind, v)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\utils\utils.py:63:4
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+62	        matrix = matrix.expand(rows.shape[0], -1, -1)
+63	    assert matrix.ndim == 3 and rows.ndim == 2 and rows.ndim == 2
+64	    assert matrix.shape[0] == rows.shape[0] and matrix.shape[0] == cols.shape[0]
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\utils\utils.py:64:4
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+63	    assert matrix.ndim == 3 and rows.ndim == 2 and rows.ndim == 2
+64	    assert matrix.shape[0] == rows.shape[0] and matrix.shape[0] == cols.shape[0]
+65	    assert rows.shape[1] == cols.shape[1]
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\utils\utils.py:65:4
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+64	    assert matrix.shape[0] == rows.shape[0] and matrix.shape[0] == cols.shape[0]
+65	    assert rows.shape[1] == cols.shape[1]
+66	    assert rows.min() >= 0 and rows.max() < matrix.shape[1]
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\utils\utils.py:66:4
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+65	    assert rows.shape[1] == cols.shape[1]
+66	    assert rows.min() >= 0 and rows.max() < matrix.shape[1]
+67	    assert cols.min() >= 0 and cols.max() < matrix.shape[2]
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\utils\utils.py:67:4
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+66	    assert rows.min() >= 0 and rows.max() < matrix.shape[1]
+67	    assert cols.min() >= 0 and cols.max() < matrix.shape[2]
+68	
+69	    aux_idx = torch.arange(matrix.shape[0]).unsqueeze(-1).to(matrix.device)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   Location: theseus\utils\utils.py:121:8
+   More Info: https://bandit.readthedocs.io/en/1.7.4/plugins/b101_assert_used.html
+120	    def df(x: np.ndarray):
+121	        assert x.ndim == 1
+122	        n = x.shape[0]
+
+--------------------------------------------------
+
+Code scanned:
+	Total lines of code: 14706
+	Total lines skipped (#nosec): 0
+	Total potential issues skipped due to specifically being disabled (e.g., #nosec BXXX): 0
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 72
+		Medium: 0
+		High: 0
+	Total issues (by confidence):
+		Undefined: 0
+		Low: 0
+		Medium: 3
+		High: 69
+Files skipped (0):
